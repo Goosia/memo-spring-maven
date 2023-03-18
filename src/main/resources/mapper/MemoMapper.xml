@@ -7,7 +7,7 @@
             IDX,
             CONTENTS
         FROM
-            MEMO.MEMO
+            DB_MEMO.MEMO
     </select>
 
 </mapper>
