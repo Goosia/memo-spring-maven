@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+    <!-- Apache DBCP BasicDatasource 클래스를 Bean으로 등록 -->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
+          p:driverClassName="${db.driver}"
+          p:url="${db.url}"
+          p:username="${db.username}"
+          p:password="${db.password}" />
+
+    <!-- Properties 파일 만들것이다. -->
+    <context:property-placeholder location="classpath:config/application.properties"/>
+
+    <!-- @Mapper 어노테이션을 이용해 Proxy(대리인) 객체 (DAOImpl)를 생성하게 하는 설정 -->
+    <mybatis-spring:scan base-package="com.goosia.memo.mapper"/>
+
+    <!--  SqlSessionTemplate -->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+        <constructor-arg ref="sqlSessionFactory" />
+    </bean>
+
+    <!--  SqlSessionFactoryBean 클래스를 Bean으로 등록 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <!-- Package에 별칭주기 : vo까지 잡아주어 상세히 한다.-->
+        <property name="typeAliasesPackage" value="com.goosia.memo.model"/>
+        <!-- underScore 표기법을 Camel 표기법으로 mapping(변환)해주는 설정 -->
+        <property name="configuration">
+            <bean class="org.apache.ibatis.session.Configuration">
+                <property name="mapUnderscoreToCamelCase" value="true"/>
+                <property name="cacheEnabled" value="false"/>
+                <property name="lazyLoadingEnabled" value="true"/>
+                <property name="multipleResultSetsEnabled" value="true"/>
+                <property name="useColumnLabel" value="true"/>
+                <property name="useGeneratedKeys" value="false"/>
+                <property name="defaultExecutorType" value="SIMPLE"/>
+                <property name="defaultStatementTimeout" value="25000"/>
+            </bean>
+        </property>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+    </bean>
+
+    <bean id="transactionManager"
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <context:component-scan base-package="com.goosia.memo"/>
+
+
+</beans>
