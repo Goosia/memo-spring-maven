@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.goosia.memo.mapper.MemoMapper">
 
-    <select id="selectMemoList" resultType="MemoVO">
+    <select id="selectMemoList" resultType="MemoDto">
         SELECT
             IDX,
             CONTENTS
@@ -10,7 +10,7 @@
             DB_MEMO.MEMO
     </select>
 
-    <select id="selectMemo" parameterType="int" resultType="com.goosia.memo.model.MemoVO">
+    <select id="selectMemo" parameterType="int" resultType="com.goosia.memo.model.MemoDto">
         SELECT
             IDX,
             CONTENTS
@@ -20,11 +20,11 @@
             IDX = #{idx}
     </select>
 
-    <insert id="insertMemo" parameterType="MemoVo">
+    <insert id="insertMemo" parameterType="MemoDto">
         INSERT INTO db_memo.memo (contents) VALUES (#{contents})
     </insert>
 
-    <update id="updateMemo" parameterType="MemoVo">
+    <update id="updateMemo" parameterType="MemoDto">
         UPDATE db_memo.memo SET contents = #{contents} WHERE idx = #{idx}
     </update>
 

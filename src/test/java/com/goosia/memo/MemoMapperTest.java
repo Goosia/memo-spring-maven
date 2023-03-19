@@ -1,6 +1,6 @@
 package com.goosia.memo;
 
-import com.goosia.memo.model.MemoVO;
+import com.goosia.memo.model.MemoDto;
 import com.goosia.memo.mapper.MemoMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,9 +20,9 @@ public class MemoMapperTest {
     @Test
     public void mapperTest() {
         // SelectList Memo
-        List<MemoVO> list = memoMapper.selectMemoList();
+        List<MemoDto> list = memoMapper.selectMemoList();
         if(!list.isEmpty() && list.size() > 0) {
-            for (MemoVO memo : list) {
+            for (MemoDto memo : list) {
                 System.out.println(memo.getIdx() + " : " + memo.getContents());
             }
         } else {

@@ -1,6 +1,6 @@
 package com.goosia.memo.controller;
 
-import com.goosia.memo.model.MemoVO;
+import com.goosia.memo.model.MemoDto;
 import com.goosia.memo.service.MemoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -41,7 +41,7 @@ public class MainController {
 
     // 메모 등록
     @PostMapping("/memo")
-    public String insertMemo(@ModelAttribute MemoVO req) {
+    public String insertMemo(@ModelAttribute MemoDto req) {
         memoService.insertMemo(req);
         return "redirect:/";
     }
@@ -55,7 +55,7 @@ public class MainController {
 
     // 메모 수정
     @PutMapping("/memo")
-    public String updateMemo(@ModelAttribute MemoVO req) {
+    public String updateMemo(@ModelAttribute MemoDto req) {
         memoService.updateMemo(req);
         return "redirect:/";
     }

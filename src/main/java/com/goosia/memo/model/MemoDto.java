@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Setter
 @Getter
-public class MemoVO {
+public class MemoDto {
     private Integer idx;
     private String contents;
 }

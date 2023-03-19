@@ -1,18 +1,17 @@
 package com.goosia.memo.service;
 
-import com.goosia.memo.model.MemoVO;
+import com.goosia.memo.model.MemoDto;
 
 import java.util.List;
-import java.util.Locale;
 
 public interface MemoService {
-    List<MemoVO> findMemoList();
+    List<MemoDto> findMemoList();
 
-    MemoVO findMemo(int idx);
+    MemoDto findMemo(int idx);
 
     void deleteMemo(int idx);
 
-    void updateMemo(MemoVO req);
+    void updateMemo(MemoDto req);
 
-    void insertMemo(MemoVO req);
+    void insertMemo(MemoDto req);
 }

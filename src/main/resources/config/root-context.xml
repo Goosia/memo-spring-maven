@@ -44,6 +44,23 @@
                 <property name="useGeneratedKeys" value="false"/>
                 <property name="defaultExecutorType" value="SIMPLE"/>
                 <property name="defaultStatementTimeout" value="25000"/>
+                <!--
+                위의 설정 파일은 아래와 같은 설정 정보를 담고 있습니다.
+
+                cacheEnabled: 캐시 사용 여부
+                lazyLoadingEnabled: 지연 로딩 사용 여부
+                multipleResultSetsEnabled: 다중 결과셋 사용 여부
+                useColumnLabel: 컬럼 라벨 사용 여부
+                useGeneratedKeys: 자동 생성된 키 사용 여부
+                defaultExecutorType: 기본 실행자 유형
+                defaultStatementTimeout: 기본 SQL 문 시간 제한
+                defaultFetchSize: 기본 페치 크기
+                typeAliases: 클래스 별칭 설정
+                environments: 개발환경 설정
+                transactionManager: 트랜잭션 관리자 유형
+                dataSource: 데이터 소스 유형
+                mappers: 매퍼 파일 경로 설정
+                -->
             </bean>
         </property>
         <property name="mapperLocations" value="classpath:mapper/*.xml"/>

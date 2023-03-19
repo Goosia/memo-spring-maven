@@ -1,7 +1,7 @@
 package com.goosia.memo.service.impl;
 
 import com.goosia.memo.mapper.MemoMapper;
-import com.goosia.memo.model.MemoVO;
+import com.goosia.memo.model.MemoDto;
 import com.goosia.memo.service.MemoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class MemoServiceImpl implements MemoService {
     private MemoMapper memoMapper;
 
     @Override
-    public List<MemoVO> findMemoList() {
+    public List<MemoDto> findMemoList() {
         log.info("===============================================================");
         log.info("로그 출력을 확인 합니다.");
         log.info("===============================================================");
@@ -27,17 +27,17 @@ public class MemoServiceImpl implements MemoService {
     }
 
     @Override
-    public MemoVO findMemo(int idx) {
+    public MemoDto findMemo(int idx) {
         return memoMapper.selectMemo(idx);
     }
 
     @Override
-    public void insertMemo(MemoVO req) {
+    public void insertMemo(MemoDto req) {
         memoMapper.insertMemo(req);
     }
 
     @Override
-    public void updateMemo(MemoVO req) {
+    public void updateMemo(MemoDto req) {
         memoMapper.updateMemo(req);
     }
 
