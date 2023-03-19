@@ -24,7 +24,7 @@
     <mybatis-spring:scan base-package="com.goosia.memo.mapper"/>
 
     <!--  SqlSessionTemplate -->
-    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate" destroy-method="clearCache">
         <constructor-arg ref="sqlSessionFactory" />
     </bean>
 
