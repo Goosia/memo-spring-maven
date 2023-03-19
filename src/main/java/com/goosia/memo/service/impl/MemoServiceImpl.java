@@ -20,6 +20,9 @@ public class MemoServiceImpl implements MemoService {
 
     @Override
     public List<MemoVO> findMemoList() {
+        log.info("===============================================================");
+        log.info("로그 출력을 확인 합니다.");
+        log.info("===============================================================");
         return memoMapper.selectMemoList();
     }
 
