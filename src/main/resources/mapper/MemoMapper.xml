@@ -10,4 +10,26 @@
             DB_MEMO.MEMO
     </select>
 
+    <select id="selectMemo" parameterType="int" resultType="com.goosia.memo.model.MemoVO">
+        SELECT
+            IDX,
+            CONTENTS
+        FROM
+            db_memo.memo
+        WHERE
+            IDX = #{idx}
+    </select>
+
+    <insert id="insertMemo" parameterType="MemoVo">
+        INSERT INTO db_memo.memo (contents) VALUES (#{contents})
+    </insert>
+
+    <update id="updateMemo" parameterType="MemoVo">
+        UPDATE db_memo.memo SET contents = #{contents} WHERE idx = #{idx}
+    </update>
+
+    <delete id="deleteMemo">
+        DELETE FROM db_memo.memo WHERE idx = #{idx}
+    </delete>
+
 </mapper>

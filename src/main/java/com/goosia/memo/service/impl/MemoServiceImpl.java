@@ -19,10 +19,27 @@ public class MemoServiceImpl implements MemoService {
     private MemoMapper memoMapper;
 
     @Override
-    public List<MemoVO> hello() {
-        log.info("------------------------------------------------------");
-        log.info("logging");
-        log.info("------------------------------------------------------");
+    public List<MemoVO> findMemoList() {
         return memoMapper.selectMemoList();
+    }
+
+    @Override
+    public MemoVO findMemo(int idx) {
+        return memoMapper.selectMemo(idx);
+    }
+
+    @Override
+    public void insertMemo(MemoVO req) {
+        memoMapper.insertMemo(req);
+    }
+
+    @Override
+    public void updateMemo(MemoVO req) {
+        memoMapper.updateMemo(req);
+    }
+
+    @Override
+    public void deleteMemo(int idx) {
+        memoMapper.deleteMemo(idx);
     }
 }
